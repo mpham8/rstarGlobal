@@ -1,6 +1,6 @@
 # rstarGlobal-18countries
 
-Extends the Global r* model in *[Global Trends in Interest Rates](https://doi.org/10.1016/j.jinteco.2019.01.010)* by Marco Del Negro, Domenico Giannone, Marc Giannoni, and Andrea Tambalotti to 18 countries.
+“The Fall 2025 Brookings Papers on Economic Activity *["Discussion of 'What next for r*' by Lukasz Rachel"]() by Marco Del Negro extends the Global r* model in *[Global Trends in Interest Rates](https://doi.org/10.1016/j.jinteco.2019.01.010)* by Marco Del Negro, Domenico Giannone, Marc Giannoni, and Andrea Tambalotti to 18 countries.
 
 ## Required software
 
@@ -20,7 +20,7 @@ These scripts were produced using MATLAB R2020a.
 - create figures
 	- to recreate figures from this discussion: in `scripts/MainModel1_MakeFigures.m`, run the 'Plot preliminaries' block, then 'Figure 1' block, then 'Figure 3b' block
 - create table
-	- to recreate the table from this discussion: in `scripts/makeTables.m`, run the 'Table A1a: Change in r-bar^w_t and Its Components (baseline), additional details' block, to get the baseline change and then run the 'Table A1b: Change in r-bar^w_t and Its Components (Convenience Yield), additional details' block to get the change under the convenience yield model, then .tex tables are outputted to `tables/`
+	- to recreate the table from this discussion: in `scripts/makeTables.m`, run the 'Table A1a: Change in r-bar^w_t and Its Components (baseline), additional details' block to get the baseline change, then run the 'Table A1b: Change in r-bar^w_t and Its Components (Convenience Yield), additional details' block to get the change under the convenience yield model, then .tex tables are outputted to `tables/`
 
 ## Data sources
 

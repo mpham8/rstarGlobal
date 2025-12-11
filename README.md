@@ -1,53 +1,30 @@
-# rstarGlobal
+# rstarGlobal-18countries
 
-Forked from code from *[Global Trends in Interest Rates](https://doi.org/10.1016/j.jinteco.2019.01.010)* by Marco Del Negro, Domenico Giannone, Marc Giannoni, and Andrea Tambalotti. Extends their Global r* model to 18 countries.
-
-## Updated r* estimates
-The [Excel file](update/Rstar_Vintages.xlsx) contains original and updated estimates (forthcoming) of the U.S. and world real interest rates. These are the estimates displayed in figure 1 of the paper. The below figure shows the latest values.
-
-
-![Figure 1](update/fig1-Model1_Rshortbar-us.png )
-*Fig.1. Trends in Global and U.S. Real Rates: 1870-2016, Baseline Model. Note: The figure plots the posterior median of the trend in the world real interest rate (dashed line) together with its 68 and 95 percent posterior coverage intervals, as well as the posterior median of the trend in the U.S. real rate (dotted line).*
+Extends the Global r* model in *[Global Trends in Interest Rates](https://doi.org/10.1016/j.jinteco.2019.01.010)* by Marco Del Negro, Domenico Giannone, Marc Giannoni, and Andrea Tambalotti to 18 countries.
 
 ## Required software
 
-These scripts were produced using MATLAB R2017b.
+These scripts were produced using MATLAB R2020a.
 
-## Installing this repository
+## Replicating figures and tables
 
-Git users are welcome to fork this repository or clone it for local use. Non-Git users will probably find it easiest to download the zip file by clicking on the green `Clone or download` button on the right hand side of this screen, and then clicking "Download ZIP."
+The *["Discussion of 'What next for r*' by Lukasz Rachel" by Marco Del Negro]() discussion uses Model 1, which estimates the baseline model with prior to variance of innovation to the trend component equal to 1, and Model 2, which estimates the model with a convenience yield. The mentioned figures are referenced to in this codebase as 'Figure 1' and 'Figure 3b'.
 
-## Directory structure
-- `figures/`: Figures from the paper's main body.
-- `indata/`: Input data.
-	- `Data_MY.xlsx`: Middle-aged and young individuals dataset.
-	- `DataInflShortLongUpdated.xlsx`: Dataset for baseline model (inflation, short-term rate, long-term rate).
-- `results/`: Model results in '.mat' format.
-	- `OutputModelX.mat`: See "scripts/" for the naming convention.
-- `scripts/`: Scripts for estimation and producing figures
-	- `MainModelX_MakeFigures.m`: The "MakeFigures" suffix makes figures for the respective model.
-	- `MainModelvar01.mat`: Estimates the baseline model with prior to variance of innovation to the trend component equal to 1.
-	- `MainModel1.mat`: Estimates the baseline model.
-	- `MainModel1_ReR`: Estimates baseline model under the real exchange rate specification.
-	- `MainModel1_unrestr`: Estimates baseline model with unrestricted loading on real rate.
-	- `MainModel1_1950.m`: Estimates baseline model starting in 1950.
-	- `MainModel1_df50.m`: Estimates baseline model with 50 degrees of freedom.
-	- `MainModel1_varX.m`: Estimates baseline model with variance of innovation to trend equal to 1/X.
-	- `MainModel2.m`: Estimates convenience yield model.
-	- `MainModel3.m`: Estimates consumption model.
-- `update/`: Updated versions of figure 1 along with its underlying data.
-
-## How to run the code
-
-Each model is generated using a script titled `MainModelX.m`. Scripts with an underscored suffix (e.g. `MainModel1_1950.m`) correspond to minor modifications to the baseline model; see the appendix for details. 
-
-`estimateAll.m` is the main script for running all the estimation routines. Set `estimateAppendices = 1` to run all specifications. MCMC results are stored as `.mat` files in the `results` folder. Depending on the machine, running the main body specifications for 100,000 draws takes around 20 hours. Reduce the number of draws for faster results.
-
-Paper figures are created using the files with the `_MakeFigures.m` suffix. 
+- load updated data into data file: `indata/DataInflShortLongUpdated.xlsx`
+- run Model 1
+	- run the Matlab script: `scripts/MainModel.m`
+	- model outputs outputted to `results/18/OutputModel1.mat`
+- run Model 2
+	- run the Matlab script: `scripts/MainModel2.m`
+	- model outputs outputted to `results/18/OutputModel2.mat`
+- create figures
+	- to recreate figures from this discussion: in `scripts/MainModel1_MakeFigures.m`, run the 'Plot preliminaries' block, then 'Figure 1' block, then 'Figure 3b' block
+- create table
+	- to recreate the table from this discussion: in `scripts/makeTables.m`, run the 'Table A1a: Change in r-bar^w_t and Its Components (baseline), additional details' block, to get the baseline change and then run the 'Table A1b: Change in r-bar^w_t and Its Components (Convenience Yield), additional details' block to get the change under the convenience yield model, then .tex tables are outputted to `tables/`
 
 ## Data sources
 
-The [`indata`](indata/) folder contains the underlying data. Data on short-term rates, long-term rates, and consumer prices come from the Jordà-Schularick-Taylor Macrohistory Database. Data for Moody's Baa corporate bond yield are available from FRED. Demographic data come from the United States Census Bureau and from the UN World Population Statistics database. Data on corporate spreads come from Gilchrist and Mojon (2018). Please see the paper for additional details on the data sources.
+The [`indata`](indata/) folder contains the underlying data. Data on short-term rates, long-term rates, and consumer prices come from the Jordà-Schularick-Taylor Macrohistory Database. Data for Moody's Baa corporate bond yield are available from FRED. Demographic data come from the United States Census Bureau and from the UN World Population Statistics database. Data on corporate spreads come from Gilchrist and Mojon (2018). Please see *[Global Trends in Interest Rates](https://doi.org/10.1016/j.jinteco.2019.01.010)* by Marco Del Negro, Domenico Giannone, Marc Giannoni, and Andrea Tambalotti for additional details on the data sources.
 
 ## Disclaimer
 Copyright Federal Reserve Bank of New York. You may reproduce, use, modify, make derivative works of, and distribute and this code in whole or in part so long as you keep this notice in the documentation associated with any distributed works. Neither the name of the Federal Reserve Bank of New York (FRBNY) nor the names of any of the authors may be used to endorse or promote works derived from this code without prior written permission. Portions of the code attributed to third parties are subject to applicable third party licenses and rights. By your use of this code you accept this license and any applicable third party license.
